@@ -58,7 +58,33 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+    function playSound(e){
+        /*
+            playSound handles both playing the sound, and animating the div of
+            the key that was pressed.
 
+        */
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        if (!audio) return; // No sound assigned to keycode
+        audio.currentTime = 0; // Allows for key spam to restart sound
+        audio.play();
+        key.classList.add('playing'); // Animates the key
+    };
+
+    function removeTransition(e){
+        /*
+            removeTransition removes the animation from the key once it has
+            played
+        */
+        if(e.propertyName !== 'transform') return; //skip if not a transform.
+        this.classList.remove('playing');
+    };
+
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+    window.addEventListener('keydown', playSound);
 </script>
 
 
