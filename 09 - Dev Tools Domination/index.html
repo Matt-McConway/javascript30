@@ -18,28 +18,60 @@
     }
 
     // Regular
+    console.log('test');
 
     // Interpolated
+    console.log('Hello I am a %s string', 'silly');
 
     // Styled
+    console.log('%c I am some great text', 'font-size: 20px; background: red;');
 
     // warning!
+    console.warn("Oh no!");
 
     // Error :|
+    console.error('Oh shit!');
 
     // Info
+    console.info('useful info!');
 
     // Testing
+    console.assert(1 === 2, 'this is wrong, 1 !== 2');
 
     // clearing
+    console.clear();
 
     // Viewing DOM Elements
+    console.log(p);
+    console.dir(p);
 
     // Grouping together
+    dogs.forEach(dog => {
+      console.group(`${dog.name}`);
+      console.log(`This is ${dog.name}.`);
+      console.log(`${dog.name} is ${dog.age} years old.`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old.`);
+      console.groupEnd(`${dog.name}`);
+    });
 
     // counting
+    console.count('Matt');
+    console.count('Matt');
+    console.count('Matt');
+    console.count('Matt');
+    console.count('Javascript');
 
     // timing
+    console.time('fetching data');
+    fetch('https://api/github.com/users/Matt-McConway')
+      .then(data => data.json())
+      .then(data =>{
+        console.timeEnd('fetching data');
+        console.log(data);
+      });
+
+    //table formating
+    console.log(dogs);
 
   </script>
 </body>
